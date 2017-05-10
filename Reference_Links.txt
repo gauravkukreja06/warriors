@@ -1,0 +1,35 @@
+Setup Node Project with Typescript:
+1. https://inviqa.com/blog/using-typescript-node-js
+
+https://dzone.com/articles/using-redis-with-nodejs-and-socketio
+
+http://jakepruitt.com/2015/02/09/beginners-guide-to-seneca-js.html
+
+https://www.compose.com/articles/building-javascript-microservices-with-senecajs-and-compose/
+
+
+https://medium.com/@cramirez92/build-a-nodejs-cinema-microservice-and-deploying-it-with-docker-part-1-7e28e25bfa8b
+
+
+
+
+
+Commands:
+1. Transpile Typescript files to JS files: 
+	tsc
+2. Run Node App:
+	node build/server.js
+3. Watch nocde app changes:
+	tsc --watch
+4. Create Mongo DB:
+	Download Latest MongoDB from Mongo DB site for windows.
+	Unzip folder
+	Go to bin directory of Unzip folder
+	Copy all the files from bin folder
+	Create folder for project database where you want to create database for the project.
+	Paste copied bin files into newly created folder.
+	Run cmd from this database folder.
+	Create new directory "data" in database folder
+5. To run mongo DB Server:
+	mongod -dbpath ./data --rest
+	(Database will be up on port 27017, we can also see admin details for mongo server on http://localhost:28017/)
