@@ -1,33 +1,26 @@
  "uses strict"
 
 import * as express from 'express';
-import * as bodyParser from 'body-parser';
-import { UserApi } from './controllers/api/users/userApi';
+import * as appConfig from "./config";
+import * as appRoute from "./route";
+import * as socketIO from 'socket.io';
+import * as socketHandler from './socketHandle';
 
 const app = express();
 const port = process.env.port || 3000;
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+// Initialize a new socket.io object. It is bound to 
+// the express app, which allows them to coexist.
+var io = socketIO.listen(app.listen(port, () => {console.log(`Server listening at ${port}`);}));
 
-// parse application/json
-app.use(bodyParser.json());
-
-// Serve the application at the given port
-app.listen(port, () => {
-    // Success callback
-    console.log(`Listening at http://localhost:${port}/`);
-});
+// Require the configuration and the routes files, and pass
+// the app and io as arguments to the returned functions.
+appConfig.config(app, io);
+appRoute.route(app, io);
+socketHandler.socketHandle(app, io);
 
 
 
-app.get('/', (req, res) => {
-    res.send("<HTML><Body><h1>Welcome to NodeJS</h1></body></HTML>");
-});
-
-
-const userApi = new UserApi();
-app.use('/api/user/v1', userApi.router);
 
 
 
